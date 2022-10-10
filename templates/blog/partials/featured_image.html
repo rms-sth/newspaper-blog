@@ -1,0 +1,10 @@
+<!-- featured image -->
+<div style="padding: 1rem;">
+  {% if post.featured_image %}
+    <img src="{{ post.featured_image.url }}"
+         alt="{{ post.title }}"
+         height="50px"
+         class="img-fluid img-responsive img-thumbnail">
+  {% endif %}
+</div>
+<!-- featured image end-->

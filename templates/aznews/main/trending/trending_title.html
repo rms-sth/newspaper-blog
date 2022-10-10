@@ -1,0 +1,8 @@
+<div class="trending-tittle">
+  <strong>Trending now</strong>
+  <div class="trending-animated">
+    <ul id="js-news" class="js-hidden">
+      {% for top_post in top_posts %}<li class="news-item">{{ top_post.title }}</li>{% endfor %}
+    </ul>
+  </div>
+</div>

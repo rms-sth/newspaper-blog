@@ -1,0 +1,58 @@
+{% load static %}
+
+<div class="header-top black-bg d-none d-md-block">
+  <div class="container">
+    <div class="col-xl-12">
+      <div class="row d-flex justify-content-between align-items-center">
+        <div class="header-info-left">
+          <ul>
+            <li>
+              <img src="{% static 'aznews/assets/img/icon/header_icon1.png' %}" alt="">
+              34ºc, Sunny
+            </li>
+            <li>
+              <img src="{% static 'aznews/assets/img/icon/header_icon1.png' %}" alt="">
+              Tuesday, 18th June, 2019
+            </li>
+          </ul>
+        </div>
+        <div class="header-info-right">
+          <ul class="header-social">
+            <li>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            </li>
+            {% if user.is_authenticated %}
+              <li>
+                <a href="{% url 'logout' %}">
+                  <i class="fas fa-sign-out-alt"></i>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'post-create' %}">
+                  <i class="fas fa-plus"></i>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'draft-list' %}">
+                  <i class="fas fa-edit"></i>
+                </a>
+              </li>
+            {% else %}
+              <li>
+                <a href="{% url 'login' %}">
+                  <i class="fas fa-sign-in-alt"></i>
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

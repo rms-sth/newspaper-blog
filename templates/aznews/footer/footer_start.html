@@ -1,0 +1,108 @@
+{% load static %}
+
+<!-- Footer Start-->
+<div class="footer-area footer-padding fix">
+  <div class="container">
+    <div class="row d-flex justify-content-between">
+      <div class="col-xl-5 col-lg-5 col-md-7 col-sm-12">
+        <div class="single-footer-caption">
+          <div class="single-footer-caption">
+            <!-- logo -->
+            <div class="footer-logo">
+              <a href="index.html">
+                <img src="{% static 'aznews/assets/img/logo/logo2_footer.png' %}" alt="">
+              </a>
+            </div>
+            <div class="footer-tittle">
+              <div class="footer-pera">
+                <p>
+                  Suscipit mauris pede for con sectetuer sodales adipisci for cursus fames lectus tempor da blandit gravida sodales  Suscipit mauris pede for con sectetuer sodales adipisci for cursus fames lectus tempor da blandit gravida sodales  Suscipit mauris pede for sectetuer.
+                </p>
+              </div>
+            </div>
+            <!-- social -->
+            <div class="footer-social">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-4  col-sm-6">
+        <div class="single-footer-caption mt-60">
+          <div class="footer-tittle">
+            <h4>Newsletter</h4>
+            <p>Subscribe to our Newsletter</p>
+            <div id="newsletter_message_form"></div>
+            <!-- Form -->
+            <div class="footer-form">
+              <div id="mc_embed_signup">
+                <form action=""
+                      method="post"
+                      class="subscribe_form relative mail_part"
+                      id="newsletter_bottom_form">
+                  {% csrf_token %}
+                  <input type="email"
+                         name="email"
+                         id="newsletter-form-email"
+                         placeholder="Email Address"
+                         class="placeholder hide-on-focus"
+                         onfocus="this.placeholder = ''"
+                         onblur="this.placeholder = ' Email Address '">
+                  <div class="form-icon">
+                    <button type="submit" class="email_icon newsletter-submit button-contactForm">
+                      <img src="{% static 'aznews/assets/img/logo/form-iocn.png' %}" alt="">
+                    </button>
+                  </div>
+                  <div class="mt-10 info"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+        <div class="single-footer-caption mb-50 mt-60">
+          <div class="footer-tittle">
+            <h4>Instagram Feed</h4>
+          </div>
+          <div class="instagram-gellay">
+            <ul class="insta-feed">
+              <li>
+                <a href="#">
+                  <img src="{% static 'aznews/assets/img/post/instra1.jpg' %}" alt="">
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="{% static 'aznews/assets/img/post/instra2.jpg' %}" alt="">
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="{% static 'aznews/assets/img/post/instra3.jpg' %}" alt="">
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="{% static 'aznews/assets/img/post/instra4.jpg' %}" alt="">
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="{% static 'aznews/assets/img/post/instra5.jpg' %}" alt="">
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="{% static 'aznews/assets/img/post/instra6.jpg' %}" alt="">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

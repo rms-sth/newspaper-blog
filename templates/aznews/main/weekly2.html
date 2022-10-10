@@ -1,0 +1,41 @@
+{% load static %}
+<!--   Weekly2-News start -->
+{% if weekly_top_posts.count > 4 %}
+  <div class="weekly2-news-area  weekly2-pading gray-bg">
+    <div class="container">
+      <div class="weekly2-wrapper">
+        <!-- section Tittle -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-tittle mb-30">
+              <h3>Weekly Top News</h3>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="weekly2-news-active dot-style d-flex dot-style">
+              {% for weekly_top_post in weekly_top_posts %}
+                <div class="weekly2-single">
+                  <div class="weekly2-img">
+                    <img src="{{ weekly_top_post.featured_image.url }}"
+                         alt="{{ weekly_top_post.title }}">
+                  </div>
+                  <div class="weekly2-caption">
+                    <span class="color1">{{ weekly_top_post.category.name }}</span>
+                    <p>{{ weekly_top_post.published_at | date:"d M Y" }}</p>
+                    <h4>
+                      <a href="{% url 'post-detail' weekly_top_post.pk %}">{{ weekly_top_post.title }}</a>
+                    </h4>
+                  </div>
+                </div>
+              {% endfor %}
+ 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+<!-- End Weekly-News -->

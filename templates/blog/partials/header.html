@@ -1,0 +1,20 @@
+<div class="page-header">
+  {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}" class="top-menu">
+      <span class="material-symbols-outlined large-icons">logout</span>
+    </a>
+    <a href="{% url 'post-create' %}" class="top-menu">
+      <span class="material-symbols-outlined">add_box</span>
+    </a>
+    <a href="{% url 'draft-list' %}" class="top-menu">
+      <span class="material-symbols-outlined">edit_note</span>
+    </a>
+  {% else %}
+    <a href="{% url 'login' %}" class="top-menu">
+      <span class="material-symbols-outlined large-icons">login</span>
+    </a>
+  {% endif %}
+  <h1>
+    <a href="/">Personal Blog</a>
+  </h1>
+</div>

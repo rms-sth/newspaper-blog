@@ -1,0 +1,19 @@
+<!-- Tags + Views count + categories -->
+<div class="post-tags">
+  <div class="col">
+    <span class="date">Tags:</span>
+    {% for tag in post.tag.all %}
+      <a href="{% url 'post-by-tag' tag.pk %}">
+        <button type="button" class="btn btn-warning">
+          {{ tag.name }}
+          <span class="badge text-bg-primary">{{ tag.post_set.all.count }}</span>
+        </button>
+      </a>
+    {% endfor %}
+  </div>
+  <div>
+    <span style="padding-right: 15px;">{{ post.views_count }} views</span>
+    <button type="button" class="btn btn-success btn-lg">{{ post.category }}</button>
+  </div>
+</div>
+<!-- end Tags + Views count + categories -->

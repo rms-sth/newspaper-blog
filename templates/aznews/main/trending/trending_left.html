@@ -1,0 +1,37 @@
+{% load static %}
+
+<div class="col-lg-8">
+  <!-- Trending Top -->
+  <div class="trending-top mb-30">
+    <div class="trend-top-img">
+      <img src="{{ most_viewed.featured_image.url }}" alt="">
+      <div class="trend-top-cap">
+        <span>{{ most_viewed.category }}</span>
+        <h2>
+          <a href="{% url 'post-detail' most_viewed.pk %}">{{ most_viewed.title }}</a>
+        </h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trending Bottom -->
+  <div class="trending-bottom">
+    <div class="row">
+      {% for top_post in top_posts %}
+        <div class="col-lg-4">
+          <div class="single-bottom mb-35">
+            <div class="trend-bottom-img mb-30">
+              <img src="{{ top_post.featured_image.url }}" alt="{{ top_post.title }}">
+            </div>
+            <div class="trend-bottom-cap">
+              <span class="color1">{{ top_post.category.name }}</span>
+              <h4>
+                <a href="{% url 'post-detail' top_post.pk %}">{{ top_post.title }}</a>
+              </h4>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

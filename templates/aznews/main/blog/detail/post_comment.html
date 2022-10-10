@@ -1,0 +1,30 @@
+{% load static %}
+
+<div class="comments-area">
+  <h4>{{ post.latest_comments.count }} Comments</h4>
+  {% for comment in post.latest_comments %}
+    <div class="comment-list">
+      <div class="single-comment justify-content-between d-flex">
+        <div class="user justify-content-between d-flex">
+          <div class="thumb">
+            <img src="{% static "img/profile.jpg" %}" alt="{{ post.title }}">
+          </div>
+          <div class="desc">
+            <p class="comment">{{ comment.description }}</p>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex align-items-center">
+                <h5>
+                  <a href="#">{{ comment.author_name }}</a>
+                </h5>
+                <p class="date">{{ comment.created_at }}</p>
+              </div>
+              <div class="reply-btn">
+                <a href="#" class="btn-reply text-uppercase">reply</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

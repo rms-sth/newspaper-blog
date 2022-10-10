@@ -1,0 +1,14 @@
+{% extends "aznews/base.html" %}
+
+{% block content %}
+  <!--================Blog Area =================-->
+  <section class="blog_area section-padding">
+    <div class="container">
+      <div class="row">
+        {% include "aznews/main/blog/post_search_left.html" %}
+        {% include "aznews/main/blog/post_right.html" %}
+      </div>
+    </div>
+  </section>
+  <!--================Blog Area =================-->
+{% endblock content %}

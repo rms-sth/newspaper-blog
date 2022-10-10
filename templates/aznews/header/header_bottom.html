@@ -1,0 +1,62 @@
+{% load static %}
+
+<div class="header-bottom header-sticky">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
+        <!-- sticky -->
+        <div class="sticky-logo">
+          <a href="/">
+            <img src="{% static 'aznews/assets/img/logo/logo.png' %}" alt="">
+          </a>
+        </div>
+        <!-- Main-menu -->
+        <div class="main-menu d-none d-md-block">
+          <nav>
+            <ul id="navigation">
+              <li>
+                <a href="/">Home</a>
+              </li>
+              {% for category in categories %}
+                <li>
+                  <a href="{% url 'post-by-category' category.pk %}">{{ category.name }}</a>
+                </li>
+              {% endfor %}
+              <li>
+                <a href="{% url 'about' %}">About</a>
+              </li>
+              <li>
+                <a href="{% url 'contact' %}">Contact</a>
+              </li>
+              <li>
+                <a href="#">Tags</a>
+                <ul class="submenu">
+                  {% for tag in tags %}
+                    <li>
+                      <a href="{% url 'post-by-tag' tag.pk %}">{{ tag.name }}</a>
+                    </li>
+                  {% endfor %} 
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-2 col-md-4">
+        <div class="header-right-btn f-right d-none d-lg-block">
+          <i class="fas fa-search special-tag"></i>
+          <div class="search-box">
+            <form action="#">
+              <input type="text" placeholder="Search">
+ 
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="col-12">
+        <div class="mobile_menu d-block d-md-none"></div>
+      </div>
+    </div>
+  </div>
+</div>

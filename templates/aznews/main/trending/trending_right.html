@@ -1,0 +1,19 @@
+{% load static %}
+
+<!-- Right content -->
+<div class="col-lg-4">
+  {% for recent_post in recent_posts %}
+    <div class="trand-right-single d-flex">
+      <div class="trand-right-img">
+        <img src="{{ recent_post.featured_image.url }}"
+             alt="{{ recent_post.title }}" width="180px">
+      </div>
+      <div class="trand-right-cap">
+        <span class="color1">{{ recent_post.category.name }}</span>
+        <h4>
+          <a href="{% url 'post-detail' recent_post.pk %}">{{ recent_post.title | truncatechars:70 }}</a>
+        </h4>
+      </div>
+    </div>
+  {% endfor %}
+</div>

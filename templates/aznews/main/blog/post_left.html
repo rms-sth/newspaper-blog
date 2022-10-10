@@ -1,0 +1,33 @@
+<div class="col-lg-8 mb-5 mb-lg-0">
+  <div class="blog_left_sidebar">
+    {% for post in posts %}
+      <article class="blog_item">
+        <div class="blog_item_img">
+          <img class="card-img rounded-0"
+               src="{{ post.featured_image.url }}"
+               alt="{{ post.title }}">
+          <a href="#" class="blog_item_date">
+            <h3>{{ post.published_at | date:"d" }}</h3>
+            <p>{{ post.published_at | date:"M" }}</p>
+          </a>
+        </div>
+
+        <div class="blog_details">
+          <a class="d-inline-block" href="{% url 'post-detail' post.pk %}">
+            <h2>{{ post.title }}</h2>
+          </a>
+          <p>{{ post.content | truncatechars:300 | safe }}</p>
+          <ul class="blog-info-link">
+            <li>
+              <a href="#"><i class="fa fa-user"></i>{{ post.tag.all|join:", " }}</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-comments"></i> {{ post.latest_comments.count }} Comments</a>
+            </li>
+          </ul>
+        </div>
+      </article>
+    {% endfor %}
+    {% include "aznews/main/blog/pagination.html" %}
+  </div>
+</div>

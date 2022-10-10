@@ -1,0 +1,14 @@
+{% load static %}
+
+<div class="blog-author">
+  <div class="media align-items-center">
+    <img src="{% static "img/profile.jpg" %}"
+         alt="{{ request.user.get_full_name }}">
+    <div class="media-body">
+      <a href="#">
+        <h4>{{ request.user.get_full_name }}</h4>
+      </a>
+      <p>@{{ request.user.username }}</p>
+    </div>
+  </div>
+</div>
