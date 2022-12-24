@@ -1,8 +1,8 @@
 from datetime import timedelta
-from turtle import title
 
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -12,14 +12,20 @@ from django.views.generic import (
     CreateView,
     DetailView,
     ListView,
+    TemplateView,
     UpdateView,
     View,
-    TemplateView,
 )
 
-from personal_blog.forms import CommentForm, ContactForm, NewsLetterForm, PostForm
+from personal_blog.forms import (
+    CategoryForm,
+    CommentForm,
+    ContactForm,
+    NewsLetterForm,
+    PostForm,
+    TagForm,
+)
 from personal_blog.models import Category, Post, Tag
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 one_week_ago = timezone.now() - timedelta(days=7)
 
@@ -67,7 +73,7 @@ class PostDetailView(DetailView):
             Post.objects.filter(id__lt=obj.id, status="published")
             .order_by("-id")
             .first()
-        ) # ORM
+        )  # ORM
         context["next_post"] = (
             Post.objects.filter(id__gt=obj.id, status="published")
             .order_by("id")
@@ -283,3 +289,71 @@ class CommentCreateView(View):
 #             request,
 #             self.template_name,
 #         )
+
+
+#################### Category #########################
+class TagDetailView(DetailView):
+    model = Tag
+    template_name = "blog/tag_detail.html"
+    context_object_name = "tag"
+
+
+class TagListView(LoginRequiredMixin, ListView):
+    model = Tag
+    template_name = "blog/tag_list.html"
+    context_object_name = "tags"
+
+
+class TagCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    form_class = TagForm
+    template_name = "blog/tag_create.html"
+    success_url = reverse_lazy("tag-list")
+
+
+class TagDeleteView(LoginRequiredMixin, View):
+    def get(self, request, pk, *args, **kwargs):
+        tag = get_object_or_404(Tag, pk=pk)
+        tag.delete()
+        return redirect("tag-list")
+
+
+class TagUpdateView(LoginRequiredMixin, UpdateView):
+    model = Tag
+    form_class = TagForm
+    template_name = "blog/tag_create.html"
+    success_url = reverse_lazy("home")
+
+
+####################### Category #######################
+class CategoryDetailView(DetailView):
+    model = Category
+    template_name = "blog/category_detail.html"
+    context_object_name = "category"
+
+
+class CategoryListView(LoginRequiredMixin, ListView):
+    model = Category
+    template_name = "blog/category_list.html"
+    context_object_name = "categories"
+
+
+class CategoryCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    form_class = CategoryForm
+    template_name = "blog/category_create.html"
+    success_url = reverse_lazy("category-list")
+
+
+class CategoryDeleteView(LoginRequiredMixin, View):
+    def get(self, request, pk, *args, **kwargs):
+        category = get_object_or_404(Category, pk=pk)
+        category.delete()
+        return redirect("category-list")
+
+
+class CategoryUpdateView(LoginRequiredMixin, UpdateView):
+    model = Category
+    form_class = CategoryForm
+    template_name = "blog/category_create.html"
+    success_url = reverse_lazy("home")

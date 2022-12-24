@@ -11,7 +11,28 @@
       <li>
         <a href="#"><i class="fa fa-comments"></i> {{ post.latest_comments.count }} Comments</a>
       </li>
+      {% if post.published_at %}
+        <li>
+          <a href="#"><i class="fa fa-calendar"></i> {{ post.published_at }}</a>
+        </li>
+      {% endif %}
     </ul>
+    {% if user.is_authenticated %}
+      <p>
+        {% if not post.published_at %}
+          <a href="{% url 'post-publish' post.pk %}"
+             class="button rounded-0 primary-bg text-white w-10 btn_1 boxed-btn">
+            Publish
+          </a>
+        {% endif %}
+        <a href="{% url 'post-update' post.pk %}"
+           class="button rounded-0 success-bg text-white w-10 btn_1 boxed-btn">
+          Update
+        </a>
+        <a href="{% url 'post-delete' post.pk %}"
+           class="button rounded-0 danger-bg text-white w-10 btn_1 boxed-btn">Delete</a>
+      </p>
+    {% endif %}
     {{ post.content | safe }}
   </div>
 </div>

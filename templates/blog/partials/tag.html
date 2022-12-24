@@ -1,0 +1,8 @@
+{% for tag in tags %}
+  <div class="tag">
+    {% if tag.created_at %}<div class="date">{{ tag.created_at }}</div>{% endif %}
+    <h1>
+      <a href="{% url 'tag-detail' tag.pk %}">{{ tag.name }}</a>
+    </h1> 
+  </div>
+{% endfor %}

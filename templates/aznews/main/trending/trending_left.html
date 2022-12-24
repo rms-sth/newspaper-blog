@@ -2,17 +2,20 @@
 
 <div class="col-lg-8">
   <!-- Trending Top -->
-  <div class="trending-top mb-30">
-    <div class="trend-top-img">
-      <img src="{{ most_viewed.featured_image.url }}" alt="">
-      <div class="trend-top-cap">
-        <span>{{ most_viewed.category }}</span>
-        <h2>
-          <a href="{% url 'post-detail' most_viewed.pk %}">{{ most_viewed.title }}</a>
-        </h2>
+  {% if most_viewed %}
+    <div class="trending-top mb-30">
+      <div class="trend-top-img">
+        <img src="{{ most_viewed.featured_image.url }}" alt="">
+        <div class="trend-top-cap">
+          <span>{{ most_viewed.category }}</span>
+          <h2>
+            <a href="{% url 'post-detail' most_viewed.pk %}">{{ most_viewed.title }}</a>
+          </h2>
+        </div>
       </div>
     </div>
-  </div>
+  {% endif %}
+ 
 
   <!-- Trending Bottom -->
   <div class="trending-bottom">

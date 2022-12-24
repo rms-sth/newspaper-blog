@@ -1,0 +1,8 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+  <div class="post my-4">
+    {% include "blog/partials/tag_action.html" %}
+    <p align="justify">{{ tag.name }}</p>
+  </div>
+{% endblock content %}

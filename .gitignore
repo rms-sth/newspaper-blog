@@ -2,6 +2,9 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,django,visualstudiocode,pycharm
 
 ### Django ###
+.vscode/
+.idea/
+.DS_Store
 *.log
 *.pot
 *.pyc

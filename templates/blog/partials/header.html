@@ -9,6 +9,12 @@
     <a href="{% url 'draft-list' %}" class="top-menu">
       <span class="material-symbols-outlined">edit_note</span>
     </a>
+    <a href="{% url 'tag-create' %}" class="top-menu">
+      <span class="material-symbols-outlined">sell</span>
+    </a>
+    <a href="{% url 'category-create' %}" class="top-menu">
+      <span class="material-symbols-outlined">category</span>
+    </a>
   {% else %}
     <a href="{% url 'login' %}" class="top-menu">
       <span class="material-symbols-outlined large-icons">login</span>

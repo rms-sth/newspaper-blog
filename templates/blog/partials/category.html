@@ -1,0 +1,8 @@
+{% for category in categories %}
+  <div class="category">
+    {% if category.created_at %}<div class="date">{{ category.created_at }}</div>{% endif %}
+    <h1>
+      <a href="{% url 'category-detail' category.pk %}">{{ category.name }}</a>
+    </h1> 
+  </div>
+{% endfor %}

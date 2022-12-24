@@ -1,0 +1,11 @@
+<div class="mb-4">
+  <h1>
+    <a href="{% url 'tag-detail' tag.pk %}">{{ tag.name }}</a>
+  </h1>
+  <a href="{% url 'tag-update' tag.pk %}" class="btn btn-primary">
+    <span class="material-symbols-outlined">edit</span>
+  </a>
+  <a href="{% url 'tag-delete' tag.pk %}" class="btn btn-danger">
+    <span class="material-symbols-outlined">delete</span>
+  </a>
+</div>

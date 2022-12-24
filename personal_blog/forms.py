@@ -1,7 +1,7 @@
 from django import forms
 from django_summernote.widgets import SummernoteWidget
 
-from personal_blog.models import Comment, Contact, NewsLetter, Post
+from personal_blog.models import Comment, Contact, NewsLetter, Post, Tag, Category
 
 
 class PostForm(forms.ModelForm):
@@ -47,3 +47,33 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = "__all__"
+
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = ("name",)
+        widgets = {
+            "name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "required": True,
+                    "placeholder": "Name of tag...",
+                }
+            ),
+        }
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ("name",)
+        widgets = {
+            "name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "required": True,
+                    "placeholder": "Name of category...",
+                }
+            ),
+        }

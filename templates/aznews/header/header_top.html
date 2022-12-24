@@ -28,11 +28,7 @@
               <a href="#"><i class="fab fa-pinterest-p"></i></a>
             </li>
             {% if user.is_authenticated %}
-              <li>
-                <a href="{% url 'logout' %}">
-                  <i class="fas fa-sign-out-alt"></i>
-                </a>
-              </li>
+ 
               <li>
                 <a href="{% url 'post-create' %}">
                   <i class="fas fa-plus"></i>
@@ -41,6 +37,21 @@
               <li>
                 <a href="{% url 'draft-list' %}">
                   <i class="fas fa-edit"></i>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'category-list' %}">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'tag-list' %}">
+                  <i class="fa fa-tags" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'logout' %}">
+                  <i class="fas fa-sign-out-alt"></i>
                 </a>
               </li>
             {% else %}
