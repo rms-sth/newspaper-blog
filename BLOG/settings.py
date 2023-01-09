@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # custom app
     "personal_blog",
     "api",
+    "report",
 ]
 
 MIDDLEWARE = [

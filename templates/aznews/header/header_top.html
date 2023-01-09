@@ -12,7 +12,7 @@
             </li>
             <li>
               <img src="{% static 'aznews/assets/img/icon/header_icon1.png' %}" alt="">
-              Tuesday, 18th June, 2019
+              {% now "jS F Y" %}
             </li>
           </ul>
         </div>
@@ -30,33 +30,38 @@
             {% if user.is_authenticated %}
  
               <li>
-                <a href="{% url 'post-create' %}">
+                <a href="{% url 'post-create' %}" title="Add Post">
                   <i class="fas fa-plus"></i>
                 </a>
               </li>
               <li>
-                <a href="{% url 'draft-list' %}">
+                <a href="{% url 'draft-list' %}" title="Draft">
                   <i class="fas fa-edit"></i>
                 </a>
               </li>
               <li>
-                <a href="{% url 'category-list' %}">
+                <a href="{% url 'category-list' %}" title="Category">
                   <i class="fa fa-book" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
-                <a href="{% url 'tag-list' %}">
+                <a href="{% url 'tag-list' %}" title="Tags">
                   <i class="fa fa-tags" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
-                <a href="{% url 'logout' %}">
+                <a href="{% url 'users' %}" title="Download Users">
+                  <i class="fas fa-download"></i>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'logout' %}" title="Logout">
                   <i class="fas fa-sign-out-alt"></i>
                 </a>
               </li>
             {% else %}
               <li>
-                <a href="{% url 'login' %}">
+                <a href="{% url 'login' %}" title="Login">
                   <i class="fas fa-sign-in-alt"></i>
                 </a>
               </li>
