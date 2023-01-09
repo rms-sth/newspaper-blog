@@ -3,15 +3,13 @@ import io
 
 from django.contrib.auth import get_user_model
 from django.http import FileResponse, HttpResponse
-from django.views.generic import View
-from reportlab.pdfgen import canvas
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Paragraph
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.platypus import SimpleDocTemplate, Paragraph
-from reportlab.lib.pagesizes import letter
 from django.utils.html import strip_tags
+from django.utils.text import slugify
+from django.views.generic import View
+from reportlab.lib.enums import TA_JUSTIFY
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer
 
 from personal_blog.models import Post
 
@@ -36,29 +34,55 @@ class UserReportView(View):
 
 
 class PDFFileDownloadView(View):
+    def generate_styles(self):
+        styles = getSampleStyleSheet()
+
+        title = ParagraphStyle(
+            "post_title",
+            fontName="Helvetica-Bold",
+            fontSize=16,
+            parent=styles["Heading2"],
+            alignment=1,
+            spaceAfter=14,
+        )
+        content = ParagraphStyle(
+            name="Justify",
+            alignment=TA_JUSTIFY,
+        )
+        styles.add(content)
+        styles.add(title)
+        return styles
+
     def get(self, request):
 
-        post = Post.objects.all().first()
-
-        # Create a file-like buffer to receive PDF data.
+        canvas = []
         buffer = io.BytesIO()
+        styles = self.generate_styles()
 
-        # Create the PDF object, using the buffer as its "file."
-        p = canvas.Canvas(buffer)
+        doc = SimpleDocTemplate(
+            buffer,
+            pagesize=letter,
+            rightMargin=72,
+            leftMargin=72,
+            topMargin=72,
+            bottomMargin=18,
+        )
+
+        post = Post.objects.all().order_by("-created_at").first()
+
+        # post title
+        canvas.append(Paragraph(post.title, styles["post_title"]))
+        canvas.append(Spacer(1, 12))
+
+        # post content
         content = strip_tags(post.content)
+        canvas.append(Paragraph(content, styles["Justify"]))
+        canvas.append(Spacer(1, 12))
 
-        if post:
-            p.drawString(100, 100, content)
-        else:
-            # Draw things on the PDF. Here's where the PDF generation happens.
-            # See the ReportLab documentation for the full list of functionality.
-            p.drawString(100, 100, "Hello world.")
+        doc.build(canvas)
 
-        # Close the PDF object cleanly, and we're done.
-        p.showPage()
-        p.save()
-
-        # FileResponse sets the Content-Disposition header so that browsers
-        # present the option to save the file.
         buffer.seek(0)
-        return FileResponse(buffer, as_attachment=True, filename="hello.pdf")
+
+        return FileResponse(
+            buffer, as_attachment=True, filename=f"{slugify(post.title)}.pdf"
+        )
