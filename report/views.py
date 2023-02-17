@@ -68,7 +68,7 @@ class PDFFileDownloadView(View):
             bottomMargin=18,
         )
 
-        post = Post.objects.all().order_by("-created_at").first()
+        post = Post.objects.filter(status="published").order_by("-created_at").first()
 
         # post title
         canvas.append(Paragraph(post.title, styles["post_title"]))

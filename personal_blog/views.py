@@ -82,6 +82,16 @@ class PostDetailView(DetailView):
         return context
 
 
+class PostListView(ListView):
+    model = Post
+    template_name = "aznews/main/blog/post_list.html"
+    context_object_name = "posts"
+    queryset = Post.objects.filter(
+        status="published", published_at__isnull=False
+    ).order_by("-published_at")
+    paginate_by = 1
+
+
 class DraftListView(LoginRequiredMixin, ListView):
     model = Post
     template_name = "aznews/main/blog/post_list.html"

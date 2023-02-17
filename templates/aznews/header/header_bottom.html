@@ -17,9 +17,12 @@
               <li>
                 <a href="/">Home</a>
               </li>
-              {% for category in categories %}
+              <li>
+                <a href="{% url 'post-list' %}">Latest Posts</a>
+              </li>
+              {% for top_category in top_categories %}
                 <li>
-                  <a href="{% url 'post-by-category' category.pk %}">{{ category.name }}</a>
+                  <a href="{% url 'post-by-category' top_category.pk %}">{{ top_category.name }}</a>
                 </li>
               {% endfor %}
               <li>
@@ -28,6 +31,7 @@
               <li>
                 <a href="{% url 'contact' %}">Contact</a>
               </li>
+
               <li>
                 <a href="#">Tags</a>
                 <ul class="submenu">
