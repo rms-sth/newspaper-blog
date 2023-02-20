@@ -12,4 +12,9 @@ urlpatterns = [
         views.PDFFileDownloadView.as_view(),
         name="pdf",
     ),
+    path(
+        "post-download/",
+        views.PostDownloadView.as_view(),
+        name="post-download",
+    ),
 ]

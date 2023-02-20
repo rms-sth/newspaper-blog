@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <style type="text/css">
+      .tg {
+          border-collapse: collapse;
+          border-spacing: 0;
+      }
+
+      .tg td {
+          font-family: Arial, sans-serif;
+          font-size: 14px;
+          padding: 10px 5px;
+          border-style: solid;
+          border-width: 1px;
+          overflow: hidden;
+          word-break: normal;
+          border-color: black;
+      }
+
+      .tg th {
+          font-family: Arial, sans-serif;
+          font-size: 14px;
+          font-weight: normal;
+          padding: 10px 5px;
+          border-style: solid;
+          border-width: 1px;
+          overflow: hidden;
+          word-break: normal;
+          border-color: black;
+      }
+
+      .tg .tg-ve35 {
+          border-color: #c0c0c0;
+          text-align: left;
+          vertical-align: middle
+      }
+
+      .tg .tg-wo29 {
+          border-color: #c0c0c0;
+          text-align: left;
+          vertical-align: top
+      }
+
+      @page {
+          size: A4;
+          /* Change from the default size of A4 */
+          margin: 3.5mm;
+          /* Set margin on each page */
+      }
+
+      .image {
+          height: 400px;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+      }
+    </style>
+  </head>
+  <title>Test</title>
+  <body>
+    <h3>Posts</h3>
+    {% for p in posts %}
+ 
+      <p>{{ p.created_at }}</p>
+      <table class="tg" style="table-layout: fixed;">
+        <tr>
+          <th colspan="2">
+            <img src="{{ p.featured_image.url }}" class="image">
+
+          </th>
+        </tr>
+        <tr>
+          <th>id</th>
+          <th>{{ p.id }}</th>
+        </tr>
+        <tr>
+          <th>title</th>
+          <th>
+            <b>{{ p.title }}</b>
+          </th>
+        </tr>
+        <tr>
+          <th>content</th>
+          <th>{{ p.content|striptags|linebreaksbr }}</th>
+        </tr>
+        <tr>
+          <th>category</th>
+          <th>{{ p.category.name|title }}</th>
+        </tr>
+        <tr>
+          <th>tags</th>
+          <th>{{ p.tag.all|join:"," }}</th>
+        </tr>
+      </table>
+    {% endfor %}
+  </body>
+</html>

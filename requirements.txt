@@ -3,3 +3,6 @@ djangorestframework==3.14.0
 django-summernote==0.8.20.0
 Pillow==9.2.0
 reportlab==3.6.12
+
+# https://doc.courtbouillon.org/weasyprint/latest/first_steps.html
+weasyprint==58.0

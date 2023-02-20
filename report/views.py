@@ -86,3 +86,37 @@ class PDFFileDownloadView(View):
         return FileResponse(
             buffer, as_attachment=True, filename=f"{slugify(post.title)}.pdf"
         )
+
+
+import tempfile
+
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+from weasyprint import HTML
+
+
+class PostDownloadView(View):
+    def get(self, request, *args, **kwargs):
+        # queryset
+        posts = Post.objects.all()
+
+        # context passed in the template
+        context = {"posts": posts}
+
+        # render
+        html_string = render_to_string("reports/posts.html", context)
+        html = HTML(string=html_string, base_url=request.build_absolute_uri())
+        result = html.write_pdf()
+
+        # http response
+        response = HttpResponse(content_type="application/pdf;")
+        response["Content-Disposition"] = "inline; filename=posts.pdf"
+        response["Content-Transfer-Encoding"] = "binary"
+
+        with tempfile.NamedTemporaryFile(delete=True) as output:
+            output.write(result)
+            output.flush()
+            output = open(output.name, "rb")
+            response.write(output.read())
+
+        return response
