@@ -1,7 +1,20 @@
 Django==4.1.1
+
+# REST API framework
 djangorestframework==3.14.0
+
+# WYSIWYG editor
 django-summernote==0.8.20.0
+
+# WSGI server for UNIX
+# gunicorn BLOG.wsgi
+gunicorn==20.1.0
+
+# PIL image library
 Pillow==9.2.0
+
+# pdf report generator
+# https://docs.reportlab.com/
 reportlab==3.6.12
 
 # https://doc.courtbouillon.org/weasyprint/latest/first_steps.html
