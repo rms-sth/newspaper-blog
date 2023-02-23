@@ -15,7 +15,17 @@ from personal_blog.models import Post
 
 User = get_user_model()
 
-COLUMNS = ["first_name", "last_name", "username", "email"]
+COLUMNS = [
+    "first_name",
+    "last_name",
+    "username",
+    "email",
+    "is_staff",
+    "is_active",
+    "is_superuser",
+    "last_login",
+    "date_joined",
+]
 
 
 class UserReportView(View):
@@ -25,6 +35,7 @@ class UserReportView(View):
         response["Content-Disposition"] = "attachment; filename=users.csv"
 
         users = User.objects.all().only(*COLUMNS).values(*COLUMNS)
+        print(users)
 
         writer = csv.DictWriter(response, fieldnames=users[0].keys())
         writer.writeheader()

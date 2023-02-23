@@ -56,12 +56,11 @@
       }
     </style>
   </head>
-  <title>Test</title>
+  <title>Post list</title>
   <body>
-    <h3>Posts</h3>
+    <h1>Posts</h1>
     {% for p in posts %}
- 
-      <p>{{ p.created_at }}</p>
+      <p>{{ p.published_at }}</p>
       <table class="tg" style="table-layout: fixed;">
         <tr>
           <th colspan="2">
