@@ -8,13 +8,13 @@ urlpatterns = [
         name="users",
     ),
     path(
-        "pdf-file/",
+        "pdf-file/post-download/",
         views.PDFFileDownloadView.as_view(),
-        name="pdf",
+        name="post-pdf-download",
     ),
     path(
-        "post-download/",
-        views.PostDownloadView.as_view(),
-        name="post-download",
+        "pdf-file/post-view/",
+        views.PostPdfFileView.as_view(),
+        name="post-pdf-view",
     ),
 ]
