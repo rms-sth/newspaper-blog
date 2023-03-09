@@ -202,7 +202,7 @@ class PostByCategory(ListView):
         queryset = Post.objects.filter(
             status="published",
             category=self.kwargs["cat_id"],
-        )
+        ) # select * from post where status = 'published' and category = 1;
         return queryset
 
 

@@ -106,16 +106,14 @@ from django.template.loader import render_to_string
 from weasyprint import HTML
 
 
-class PostDownloadView(View):
+class PostPdfFileView(View):
     def get(self, request, *args, **kwargs):
         # queryset
-        posts = Post.objects.all()
-
-        # context passed in the template
-        context = {"posts": posts}
+        posts = Post.objects.all()  # SELECT * from personal_blog_post
+        print(posts.query)
 
         # render
-        html_string = render_to_string("reports/posts.html", context)
+        html_string = render_to_string("reports/posts.html", {"posts": posts})
         html = HTML(string=html_string, base_url=request.build_absolute_uri())
         result = html.write_pdf()
 
@@ -127,7 +125,8 @@ class PostDownloadView(View):
         with tempfile.NamedTemporaryFile(delete=True) as output:
             output.write(result)
             output.flush()
-            output = open(output.name, "rb")
-            response.write(output.read())
+
+            with open(output.name, "rb") as f:
+                response.write(f.read())
 
         return response
